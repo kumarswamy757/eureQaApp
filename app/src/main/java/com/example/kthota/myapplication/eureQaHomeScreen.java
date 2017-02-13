@@ -66,6 +66,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
     Object name=null;
     JSONObject jsonObject1=null;
     List<CharSequence> mHelperNames=null;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1436,8 +1437,9 @@ public class eureQaHomeScreen extends AppCompatActivity  {
                     table.addView(tableRowHead);
 
 
+                    final ArrayList<String> statusList=new ArrayList<String>();
 
-                    for(int i=0;i<jsonArray.length();i++)
+                    for(i=0;i<jsonArray.length();i++)
                     {
 //                        72197 parent
                         jsonObject1=jsonArray.getJSONObject(i);
@@ -1454,7 +1456,8 @@ public class eureQaHomeScreen extends AppCompatActivity  {
 //                        Log.d("jsonobject1",jsonObject1.getJSONObject(name.toString()).getJSONArray("testingContextInfo").toString());
                         Log.d("name",name1);
                         Log.d("status",statusName);
-
+                        statusList.add(statusName);
+//                        System.out.println(statusList.get(0));
                         TableRow tableRow=new TableRow(eureQaHomeScreen.this);
 
                        /* CheckBox checkBox=new CheckBox(eureQaHomeScreen.this);
@@ -1477,6 +1480,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
                         {
                             ((ImageButton) view).setImageDrawable(getDrawable(getResources().getIdentifier("executionicon", "drawable", getPackageName())));
 //                            view.setBackground(getResources().getDrawable(R.drawable.table_border));
+                            view.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
                             view.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
                             view.setId(id);
                         }
@@ -1560,7 +1564,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
                                                 System.out.println("*********************************************************");
                                                 for (int selectedItems=0;selectedItems<mSelectedItems.size();selectedItems++)
                                                 {
-                                                    System.out.println(mHelperNames.get(mSelectedItems.get(selectedItems)));
+                                                    System.out.println(mHelperNames.get(mSelectedItems.get(selectedItems))+"--->"+statusList.get(0));
                                                 }
                                                 System.out.println("*********************************************************");
 
