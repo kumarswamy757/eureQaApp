@@ -67,6 +67,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
     JSONObject jsonObject1=null;
     List<CharSequence> mHelperNames=null;
     int i=0;
+    int y=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1438,6 +1439,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
 
 
                     final ArrayList<String> statusList=new ArrayList<String>();
+                    final ArrayList<String> statusIDs=new ArrayList<String>();
 
                     for(i=0;i<jsonArray.length();i++)
                     {
@@ -1474,6 +1476,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
                             view.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
                             view.setLayoutParams( new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
                             view.setId(id);
+                            statusIDs.add(id+"");
 
                         }
                         else
@@ -1483,6 +1486,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
                             view.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
                             view.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
                             view.setId(id);
+                            statusIDs.add(id+"");
                         }
 
                         view.setOnClickListener(new View.OnClickListener(){
@@ -1495,6 +1499,18 @@ public class eureQaHomeScreen extends AppCompatActivity  {
 
                                 ImageButton t = (ImageButton) view1;
                                 Log.d("Clicked Button", t.getId() + "");
+                                int clickedButton=t.getId();
+
+
+                                for (y=0;y<statusIDs.size();y++)
+                                {
+
+                                    if(statusIDs.get(y).equals(clickedButton+"")) {
+                                        System.out.println("Y Value: "+y);
+                                        break;
+                                    }
+                                }
+
 
                                 final    ArrayList<Integer> mSelectedItems=new ArrayList();  // Where we track the selected items
 
@@ -1564,7 +1580,7 @@ public class eureQaHomeScreen extends AppCompatActivity  {
                                                 System.out.println("*********************************************************");
                                                 for (int selectedItems=0;selectedItems<mSelectedItems.size();selectedItems++)
                                                 {
-                                                    System.out.println(mHelperNames.get(mSelectedItems.get(selectedItems))+"--->"+statusList.get(0));
+                                                    System.out.println(mHelperNames.get(mSelectedItems.get(selectedItems))+"--->"+statusList.get(y));
                                                 }
                                                 System.out.println("*********************************************************");
 
